@@ -1,4 +1,0 @@
-example_id                                 | status | run_time        |
------------------------------------------- | ------ | --------------- |
-./spec/structured_changelog_spec.rb[1:1:1] | passed | 0.00043 seconds |
-./spec/structured_changelog_spec.rb[1:2:1] | passed | 0.00017 seconds |
