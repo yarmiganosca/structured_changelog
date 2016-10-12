@@ -5,7 +5,7 @@ require 'structured_changelog'
 
 Gem::Specification.new do |spec|
   spec.name          = "structured_changelog"
-  spec.version       = StructuredChangelog.new("changelog.md").version
+  spec.version       = StructuredChangelog.new("CHANGELOG.md").version
   spec.authors       = ["Chris Hoffman"]
   spec.email         = ["yarmiganosca@gmail.com"]
 
