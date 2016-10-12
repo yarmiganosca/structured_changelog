@@ -2,9 +2,10 @@
 
 * FEATURE validation requires BREAKING/FEATURE/FIX prefixes for each line
 
-## ROADMAP 0.3.0
+## RELEASE 0.3.0
 
 * FEATURE include a rake task
+* FEATURE rake task includes color output
 
 ## RELEASE 0.2.0
 
