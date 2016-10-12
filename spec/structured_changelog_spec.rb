@@ -1,7 +1,7 @@
 require 'pathname'
 
 RSpec.describe StructuredChangelog do
-  let(:changelog_file) { Pathname.new(__FILE__)/'..'/'changelog.md' }
+  let(:changelog_file) { Pathname.new(__FILE__)/'..'/'CHANGELOG.md' }
   subject(:changelog)  { StructuredChangelog.new(changelog_file) }
 
   describe "#version" do
