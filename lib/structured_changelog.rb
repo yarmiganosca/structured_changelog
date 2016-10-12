@@ -15,10 +15,28 @@ class StructuredChangelog
   end
 
   def version
-    releases.max.version
+    latest_release.version
+  end
+
+  def validate
+    notifications = []
+
+    if latest_release.nil?
+      notifications << "No RELEASE blocks"
+    else
+      notifications += latest_release.validate
+    end
+
+    notifications.each(&method(:puts))
+
+    notifications.empty?
   end
 
   private
+
+  def latest_release
+    releases.max
+  end
 
   def parse
     capture = []
