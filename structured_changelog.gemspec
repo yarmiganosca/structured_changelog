@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Chris Hoffman"]
   spec.email         = ["yarmiganosca@gmail.com"]
 
-  spec.summary       = %q{A useful changelog for a change}
-  spec.description   = "Psychological manipulation designed to get programmers to right changelogs."
+  spec.summary       = %q{A useful changelog, for a change.}
+  spec.description   = "Version your gem through your changelog, not a VERSION constant."
   spec.homepage      = "https://www.github.com/yarmiganosca/structured_changelog"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
