@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'structured_changelog'
+require 'structured_changelog/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "structured_changelog"
-  spec.version       = StructuredChangelog.new("CHANGELOG.md").version
+  spec.version       = StructuredChangelog::VERSION
   spec.authors       = ["Chris Hoffman"]
   spec.email         = ["yarmiganosca@gmail.com"]
 
