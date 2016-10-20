@@ -5,9 +5,9 @@ RSpec.describe 'structured_changelog:validate', type: :rake do
   let(:task_name) { 'structured_changelog:validate' }
 
   it 'validates a good changelog' do
-    options = {path: Pathname.new(__FILE__)/'..'/'..'/'CHANGELOG.md'}    
+    options = {path: Pathname.new(__FILE__)/'..'/'..'/'CHANGELOG.md'}
 
-    expect { task.execute(options) }.to_not output.to_stdout
+    expect { task.execute(options) }.to output(/Valid /).to_stdout
   end
 
   it "doesn't validate a bad changelog" do
