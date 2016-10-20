@@ -1,8 +1,8 @@
 require 'fantaskspec'
 require 'structured_changelog/task'
 
-RSpec.describe 'structured_changelog:validate', type: :rake do
-  let(:task_name) { 'structured_changelog:validate' }
+RSpec.describe 'changelog:validate', type: :rake do
+  let(:task_name) { 'changelog:validate' }
 
   it 'validates a good changelog' do
     options = {path: Pathname.new(__FILE__)/'..'/'..'/'CHANGELOG.md'}
