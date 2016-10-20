@@ -17,7 +17,7 @@ end
 To add `rake structured_changelog:validate` and make it part of `rake release`, add this to your `Rakefile`:
 
 ```ruby
-require 'structured_changelog/task'
+require 'structured_changelog/tasks'
 ```
 
 
