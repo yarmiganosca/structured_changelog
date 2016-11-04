@@ -1,5 +1,7 @@
 class StructuredChangelog
   class Release
+    attr_reader :contents
+
     def self.pattern
       /^## RELEASE (?<version>\d+\.\d+\.\d+)$/
     end
@@ -23,9 +25,5 @@ class StructuredChangelog
     def <=>(release)
       version <=> release.version
     end
-
-    private
-
-    attr_reader :contents
   end
 end
