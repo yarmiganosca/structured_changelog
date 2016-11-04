@@ -1,7 +1,7 @@
 # ROADMAP
 
-* FEATURE blah
+* FEATURE: blah
 
 # RELEASE
 
-* FIX something
+* FIX: something

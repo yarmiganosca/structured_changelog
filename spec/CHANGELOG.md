@@ -8,12 +8,12 @@
 
 ## RELEASE 0.2.0
 
-* FEATURE blue
+* FEATURE: blue
 
 ## RELEASE 0.1.1
 
-* FIX red
+* FIX: red
 
 ## RELEASE 0.1.0
 
-* FEATURE thingy
+* FEATURE: thingy
