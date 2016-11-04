@@ -1,5 +1,3 @@
 require 'structured_changelog'
 
-class StructuredChangelog
-  VERSION = StructuredChangelog.new("CHANGELOG.md").version
-end
+StructuredChangelog::VERSION = StructuredChangelog.new("CHANGELOG.md").version

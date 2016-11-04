@@ -2,16 +2,12 @@
 
 You have a changelog in your repo, right? Great! Then what do you need with a `VERSION` constant?
 
-To parse your gem's current version right off your changelog, put this in `yourproject.gemspec`:
+To parse your gem's current version from your changelog, put this in `lib/myproject/version.rb`:
 
 ```ruby
 require 'structured_changelog'
 
-Gem::Specification.new do |spec|
-  ...
-  spec.version = StructuredChangeog.new("path/to/CHANGELOG.md").version
-  ...
-end
+MyProject::VERSION = StructuredChangeog.new("path/to/CHANGELOG.md").version
 ```
 
 To add `rake structured_changelog:validate` and make it part of `rake release`, add this to your `Rakefile`:
@@ -20,8 +16,32 @@ To add `rake structured_changelog:validate` and make it part of `rake release`, 
 require 'structured_changelog/tasks'
 ```
 
+## Shiny Rake Tasks
 
+To validate your changelog:
 
+    $ bundle exec rake changelog:validate
+    
+To view your the release notes of every release:
+
+    $ bundle exec rake changelog:notes
+    $ bundle exec rake changelog:notes[ALL]
+
+for a specific release:
+
+    $ bundle exec rake changelog:notes[1.0.4]
+
+for all releases inclusively after a given release:
+
+    $ bundle exec rake changelog:notes[1.0.4<]
+    
+for all releases inclusively before a given release:
+
+    $ bundle exec rake changelog:notes[<2.0.4]
+
+for all releases inclusively between two releases:
+
+    $ bundle exec rake changelog:notes[1.0.4<2.0.4]
 
 ## Installation
 
