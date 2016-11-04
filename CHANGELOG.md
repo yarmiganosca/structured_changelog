@@ -1,12 +1,19 @@
-## ROADMAP 0.4.0
+## ROADMAP 1.0.0
 
-* FEATURE: validation requires BREAKING:/FEATURE:/FIX: prefixes for each line
-* FIX: have documentation
+* validate that each line starts with BREAKING:/FEATURE:/FIX:
+* validate that each release has the appropriate version
+* validate that release numbers increase monotonically
+* have a README
+* support variant versions (rc1, pre, alpha, etc..)
+* centralize the version regex (if possible)
+
+## RELEASE 0.4.0
+
+* FEATURE: view the release notes for a version (or range of versions) with "rake changelog:notes"
 
 ## RELEASE 0.3.0
 
-* FEATURE: include a rake task
-* FEATURE: rake task includes color output
+* FEATURE: include a changelog:validate task
 
 ## RELEASE 0.2.0
 
