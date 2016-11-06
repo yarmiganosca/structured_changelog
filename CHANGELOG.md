@@ -3,7 +3,6 @@
 * validate that each line starts with BREAKING:/FEATURE:/FIX:
 * validate that each release has the appropriate version
 * validate that release numbers increase monotonically
-* have a README
 * support variant versions (rc1, pre, alpha, etc..)
 * centralize the version regex (if possible)
 * add a `rake changelog:version` to provide the version from the command line
