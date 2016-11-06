@@ -5,7 +5,10 @@
 * validate that release numbers increase monotonically
 * support variant versions (rc1, pre, alpha, etc..)
 * centralize the version regex (if possible)
-* add a `rake changelog:version` to provide the version from the command line
+
+## RELEASE 0.5.0
+
+* FEATURE: a `rake changelog:version` to display the current version
 
 ## RELEASE 0.4.1
 
