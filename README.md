@@ -10,38 +10,50 @@ require 'structured_changelog'
 MyProject::VERSION = StructuredChangeog.new("path/to/CHANGELOG.md").version
 ```
 
-To add `rake structured_changelog:validate` and make it part of `rake release`, add this to your `Rakefile`:
+If you use `rake release` to release new code, & want changelog validation to be a part of that release task, you can add this to your `Rakefile`:
 
 ```ruby
 require 'structured_changelog/tasks'
 ```
 
-## Shiny Rake Tasks
+(This will execute code that injects the `changelog:validate` task into the list of tasks `rake release` runs before performing a release.)
+
+You'll also get these other wonderful rake tasks:
+
+## Wonderful Rake Tasks
 
 To validate your changelog:
 
-    $ bundle exec rake changelog:validate
-    
-To view your the release notes of every release:
+    $ rake changelog:validate
 
-    $ bundle exec rake changelog:notes
-    $ bundle exec rake changelog:notes[ALL]
+To determine what version you're on:
+
+    $ rake changelog:version
+
+To view the release notes of the current release:
+
+    $ rake changelog:notes
+    $ rake changelog:notes[current]
+    
+To view the release notes of every release:
+
+    $ rake changelog:notes[all]
 
 for a specific release:
 
-    $ bundle exec rake changelog:notes[1.0.4]
+    $ rake changelog:notes[1.0.4]
 
 for all releases inclusively after a given release:
 
-    $ bundle exec rake changelog:notes[1.0.4<]
-    
+    $ rake changelog:notes[1.0.4<]
+
 for all releases inclusively before a given release:
 
-    $ bundle exec rake changelog:notes[<2.0.4]
+    $ rake changelog:notes[<2.0.4]
 
 for all releases inclusively between two releases:
 
-    $ bundle exec rake changelog:notes[1.0.4<2.0.4]
+    $ rake changelog:notes[1.0.4<2.0.4]
 
 ## Installation
 

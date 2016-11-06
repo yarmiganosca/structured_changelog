@@ -1,3 +1,7 @@
+## ROADMAP 1.1.0
+
+* investigate partial parsing of a file if parsing slows down *too much* on large changelogs
+
 ## ROADMAP 1.0.0
 
 * validate that each line starts with BREAKING:/FEATURE:/FIX:
