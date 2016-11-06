@@ -1,14 +1,16 @@
-require 'structured_changelog/release_comparators/base'
+require 'structured_changelog/release_filters/base'
 
 class StructuredChangelog
-  module ReleaseComparators
+  module ReleaseFilters
     class MatchesVersionsLessThanOrEqualTo < Base
       def self.pattern
         /^\<(?<version>\d+\.\d+\.\d+)$/
       end
 
-      def call(release)
-        release.version <= version
+      def filter_releases(releases)
+        releases.select do |release| 
+          release.version <= version
+        end
       end
 
       private

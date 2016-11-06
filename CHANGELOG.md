@@ -7,7 +7,10 @@
 * support variant versions (rc1, pre, alpha, etc..)
 * centralize the version regex (if possible)
 * add a `rake changelog:version` to provide the version from the command line
-* make `rake changelog:notes` output the notes of the current version only by default
+
+## RELEASE 0.4.1
+
+* FIX: with no query, `rake changelog:notes` outputs the notes of the current version (instead of all versions)
 
 ## RELEASE 0.4.0
 

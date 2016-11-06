@@ -9,7 +9,7 @@ class StructuredChangelog
     end
 
     def initialize(contents)
-      @contents = contents
+      @contents = contents.strip
     end
 
     def version

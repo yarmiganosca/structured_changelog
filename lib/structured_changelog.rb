@@ -1,7 +1,7 @@
 require 'pathname'
 require 'structured_changelog/release'
 require 'structured_changelog/roadmap'
-require 'structured_changelog/release_comparators'
+require 'structured_changelog/release_filters'
 
 class StructuredChangelog
   attr_reader :path, :releases, :roadmaps
@@ -34,9 +34,9 @@ class StructuredChangelog
   end
 
   def find_releases(query)
-    comparator = ReleaseComparators.comparator_for(query)
-
-    releases.select(&comparator)
+    ReleaseFilters
+      .filter_for(query)
+      .filter_releases(releases)
   end
 
   private

@@ -1,5 +1,5 @@
 class StructuredChangelog
-  module ReleaseComparators
+  module ReleaseFilters
     class Base
       def self.appropriate_for_query?(query)
         !query.match(pattern).nil?
@@ -7,10 +7,6 @@ class StructuredChangelog
 
       def initialize(query)
         @query = query
-      end
-
-      def to_proc
-        method(:call).to_proc
       end
 
       private
