@@ -4,7 +4,7 @@ class StructuredChangelog
   module ReleaseFilters
     class MatchesSingleVersion < Base
       def self.pattern
-        /^\d+\.\d+\.\d+$/
+        /^\d+\.\d+\.\d+\S*$/
       end
 
       def filter_releases(releases)

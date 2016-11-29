@@ -12,6 +12,10 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## RELEASE 0.6.2
+
+* FIX: fixed notes task query for wider version numbers
+
 ## RELEASE 0.6.1
 
 * FIX: non-semver versions were temporarily supported; they aren't. variants still are.

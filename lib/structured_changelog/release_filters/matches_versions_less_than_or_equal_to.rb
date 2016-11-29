@@ -4,7 +4,7 @@ class StructuredChangelog
   module ReleaseFilters
     class MatchesVersionsLessThanOrEqualTo < Base
       def self.pattern
-        /^\<(?<version>\d+\.\d+\.\d+)$/
+        /^\<\ (?<version>\d+\.\d+\.\d+\S*)$/
       end
 
       def filter_releases(releases)

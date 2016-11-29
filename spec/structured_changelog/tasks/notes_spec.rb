@@ -50,7 +50,7 @@ RSpec.describe 'rake changelog:notes', type: :rake do
   end
 
   context "releases after a version" do
-    let(:query) { "0.1.1<" }
+    let(:query) { "0.1.1 <" }
     let(:releases) { [zero_two_zero, zero_one_one] }
 
     it 'displays the notes for 0.1.0, 0.1.1, 0.2.0' do
@@ -59,7 +59,7 @@ RSpec.describe 'rake changelog:notes', type: :rake do
   end
 
   context "releases before a version" do
-    let(:query) { "<0.1.1" }
+    let(:query) { "< 0.1.1" }
     let(:releases) { [zero_one_one, zero_one_zero] }
 
     it 'displays the notes for 0.1.0, 0.1.1, 0.2.0' do
@@ -68,7 +68,7 @@ RSpec.describe 'rake changelog:notes', type: :rake do
   end
 
   context "releases between two versions" do
-    let(:query) { "0.1.0<0.2.0" }
+    let(:query) { "0.1.0 < 0.2.0" }
     let(:releases) { [zero_two_zero, zero_one_one, zero_one_zero] }
 
     it 'displays the notes for 0.1.0, 0.1.1, 0.2.0' do

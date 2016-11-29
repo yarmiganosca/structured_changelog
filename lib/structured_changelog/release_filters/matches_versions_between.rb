@@ -4,7 +4,7 @@ class StructuredChangelog
   module ReleaseFilters
     class MatchesVersionsBetween < Base
       def self.pattern
-        /^(?<floor>\d+\.\d+\.\d+)\<(?<ceiling>\d+\.\d+\.\d+)$/
+        /^(?<floor>\d+\.\d+\.\d+\S*)\ \<\ (?<ceiling>\d+\.\d+\.\d+\S*)$/
       end
 
       def filter_releases(releases)
