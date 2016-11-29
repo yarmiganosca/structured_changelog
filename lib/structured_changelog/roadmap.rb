@@ -1,7 +1,15 @@
 class StructuredChangelog
   class Roadmap
-    def self.pattern
-      /^## ROADMAP (?<version>\d+\.\d+\.\d+)$/
+    def self.start_with?(line)
+      patterns.any? { |pattern| line =~ pattern }
+    end
+
+    def self.patterns
+      [
+        /^## ROADMAP (?<version>\S+)$/,
+        /^## ROADMAP/,
+        /^## NEXT RELEASE/,
+      ]
     end
 
     def <=>(roadmap)
@@ -13,7 +21,13 @@ class StructuredChangelog
     end
 
     def version
-      contents.match(self.class.pattern)[:version]
+      self.class.patterns.each do |pattern|
+        match = contents.match(pattern)
+
+        return match[:version] if match && match.names.include?('version')
+      end
+
+      nil
     end
 
     private

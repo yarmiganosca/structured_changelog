@@ -12,7 +12,7 @@ RSpec.describe StructuredChangelog do
 
   describe "#roadmap" do
     it 'contains all the versions in the ROADMAP blocks' do
-      expect(changelog.roadmaps.map(&:version).sort).to eq %w(100.0.0 100.0.1)
+      expect(changelog.roadmaps.map(&:version).compact.sort).to eq %w(100.0.0 100.0.1)
     end
   end
 end

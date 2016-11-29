@@ -2,8 +2,12 @@ class StructuredChangelog
   class Release
     attr_reader :contents
 
+    def self.start_with?(line)
+      line =~ pattern
+    end
+
     def self.pattern
-      /^## RELEASE (?<version>\d+\.\d+\.\d+)$/
+      /^## RELEASE (?<version>\S+)$/
     end
 
     def initialize(contents)

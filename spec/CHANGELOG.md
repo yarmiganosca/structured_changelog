@@ -6,6 +6,10 @@
 
 * stuff
 
+## NEXT RELEASE
+
+* FIX: planned stuff
+
 ## RELEASE 0.2.0
 
 * FEATURE: blue

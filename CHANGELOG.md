@@ -4,11 +4,18 @@
 
 ## ROADMAP 1.0.0
 
+* consider moving from BREAKING/FEATURE/FIX to MAJOR/MINOR/PATCH
 * validate that each line starts with BREAKING:/FEATURE:/FIX:
 * validate that each release has the appropriate version
 * validate that release numbers increase monotonically
-* support variant versions (rc1, pre, alpha, etc..)
 * centralize the version regex (if possible)
+* require release block lines to be ordered in descending severity
+* disable strict semver version validation before 1.0.0
+
+## RELEASE 0.6.0
+
+* FEATURE: variant versions (rc1, pre, alpha, etc..) are supported
+* FEATURE: non-numbered roadmap versions (for un-released but immediate work) are now supported
 
 ## RELEASE 0.5.0
 

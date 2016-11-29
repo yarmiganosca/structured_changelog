@@ -49,11 +49,11 @@ class StructuredChangelog
     capture = []
 
     [*path.readlines, :EOF].each do |line|
-      if line == :EOF || line =~ Roadmap.pattern || line =~ Release.pattern
-        if capture.first =~ Roadmap.pattern
+      if line == :EOF || Roadmap.start_with?(line) || Release.start_with?(line)
+        if Roadmap.start_with?(capture.first)
           roadmaps << Roadmap.new(capture.join)
           capture = []
-        elsif capture.first =~ Release.pattern
+        elsif Release.start_with?(capture.first)
           releases << Release.new(capture.join)
           capture = []
         end
