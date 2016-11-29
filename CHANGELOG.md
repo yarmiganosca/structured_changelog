@@ -12,6 +12,10 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## RELEASE 0.6.1
+
+* FIX: non-semver versions were temporarily supported; they aren't. variants still are.
+
 ## RELEASE 0.6.0
 
 * FEATURE: variant versions (rc1, pre, alpha, etc..) are supported

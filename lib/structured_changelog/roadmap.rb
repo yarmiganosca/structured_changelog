@@ -6,7 +6,7 @@ class StructuredChangelog
 
     def self.patterns
       [
-        /^## ROADMAP (?<version>\S+)$/,
+        /^## ROADMAP (?<version>\d+\.\d+\.\d+\S*)$/,
         /^## ROADMAP/,
         /^## NEXT RELEASE/,
       ]

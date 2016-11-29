@@ -7,7 +7,7 @@ class StructuredChangelog
     end
 
     def self.pattern
-      /^## RELEASE (?<version>\S+)$/
+      /^## RELEASE (?<version>\d+\.\d+\.\d+\S*)$/
     end
 
     def initialize(contents)
