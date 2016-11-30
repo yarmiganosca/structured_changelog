@@ -12,6 +12,10 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## RELEASE 0.7.0
+
+* FEATURE: rake changelog:recent displays the N most recent release sections
+
 ## RELEASE 0.6.2
 
 * FIX: fixed notes task query for wider version numbers
