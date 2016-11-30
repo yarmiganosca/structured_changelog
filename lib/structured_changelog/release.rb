@@ -1,3 +1,5 @@
+require 'structured_changelog/version_pattern'
+
 class StructuredChangelog
   class Release
     attr_reader :contents
@@ -7,7 +9,7 @@ class StructuredChangelog
     end
 
     def self.pattern
-      /^## RELEASE (?<version>\d+\.\d+\.\d+\S*)$/
+      /^## RELEASE #{VersionPattern}$/
     end
 
     def initialize(contents)

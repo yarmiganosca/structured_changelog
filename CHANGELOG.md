@@ -8,7 +8,6 @@
 * validate that each line starts with BREAKING:/FEATURE:/FIX:
 * validate that each release has the appropriate version
 * validate that release numbers increase monotonically
-* centralize the version regex (if possible)
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 

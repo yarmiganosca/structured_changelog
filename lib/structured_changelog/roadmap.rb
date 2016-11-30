@@ -1,3 +1,5 @@
+require 'structured_changelog/version_pattern'
+
 class StructuredChangelog
   class Roadmap
     def self.start_with?(line)
@@ -6,7 +8,7 @@ class StructuredChangelog
 
     def self.patterns
       [
-        /^## ROADMAP (?<version>\d+\.\d+\.\d+\S*)$/,
+        /^## ROADMAP #{VersionPattern}$/,
         /^## ROADMAP/,
         /^## NEXT RELEASE/,
       ]

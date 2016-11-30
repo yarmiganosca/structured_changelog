@@ -1,10 +1,11 @@
 require 'structured_changelog/release_filters/base'
+require 'structured_changelog/version_pattern'
 
 class StructuredChangelog
   module ReleaseFilters
     class MatchesVersionsBetween < Base
       def self.pattern
-        /^(?<floor>\d+\.\d+\.\d+\S*)\ \<\ (?<ceiling>\d+\.\d+\.\d+\S*)$/
+        /^(?<floor>#{VersionPattern})\ \<\ (?<ceiling>#{VersionPattern})$/
       end
 
       def filter_releases(releases)
