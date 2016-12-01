@@ -45,15 +45,23 @@ for a specific release:
 
 for all releases inclusively after a given release:
 
-    $ rake changelog:notes[1.0.4<]
+    $ rake changelog:notes[1.0.4 <]
 
 for all releases inclusively before a given release:
 
-    $ rake changelog:notes[<2.0.4]
+    $ rake changelog:notes[< 2.0.4]
 
 for all releases inclusively between two releases:
 
-    $ rake changelog:notes[1.0.4<2.0.4]
+    $ rake changelog:notes[1.0.4 < 2.0.4]
+
+To view the last 3 releases:
+
+    $ rake changelog:recent
+
+To view the last N releases:
+
+    $ rake changelog:recent[N]
 
 ## Installation
 
