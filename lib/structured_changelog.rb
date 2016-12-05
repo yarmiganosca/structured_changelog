@@ -1,4 +1,5 @@
 require 'pathname'
+require 'set'
 require 'structured_changelog/release'
 require 'structured_changelog/roadmap'
 require 'structured_changelog/release_filters'

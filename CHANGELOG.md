@@ -14,6 +14,7 @@
 ## RELEASE 0.7.1
 
 * FIX: stopped trying to hijack gem tasks, as that led to errors in downstream projects
+* FIX: added missing require
 
 ## RELEASE 0.7.0
 
