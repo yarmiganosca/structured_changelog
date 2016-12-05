@@ -1,7 +1,7 @@
 Dir[File.join(File.dirname(__FILE__), "release_filters", "*.rb")].each(&method(:require))
 
 class StructuredChangelog
-  IllegalQuery = Class.new(StandardError)
+  class IllegalQuery < StandardError; end
 
   module ReleaseFilters
     def self.filter_for(query)

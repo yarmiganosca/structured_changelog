@@ -10,15 +10,13 @@ require 'structured_changelog'
 MyProject::VERSION = StructuredChangeog.new("path/to/CHANGELOG.md").version
 ```
 
-If you use `rake release` to release new code, & want changelog validation to be a part of that release task, you can add this to your `Rakefile`:
+You can also add this to your Rakefile:
 
 ```ruby
 require 'structured_changelog/tasks'
 ```
 
-(This will execute code that injects the `changelog:validate` task into the list of tasks `rake release` runs before performing a release.)
-
-You'll also get these other wonderful rake tasks:
+You'll get these other wonderful rake tasks:
 
 ## Wonderful Rake Tasks
 

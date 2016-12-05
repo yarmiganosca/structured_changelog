@@ -11,6 +11,10 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## RELEASE 0.7.1
+
+* FIX: stopped trying to hijack gem tasks, as that led to errors in downstream projects
+
 ## RELEASE 0.7.0
 
 * FEATURE: rake changelog:recent displays the N most recent release sections
