@@ -25,7 +25,9 @@ class StructuredChangelog
     end
 
     def version
-      contents.match(self.class.pattern)[:version]
+      version_string = contents.match(self.class.pattern)[:version]
+
+      Gem::Version.new(version_string)
     end
 
     def <=>(release)

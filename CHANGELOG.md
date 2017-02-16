@@ -11,6 +11,10 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## RELEASE 0.7.2
+
+* FIX: fixed version comparison
+
 ## RELEASE 0.7.1
 
 * FIX: stopped trying to hijack gem tasks, as that led to errors in downstream projects

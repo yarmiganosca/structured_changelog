@@ -10,7 +10,7 @@ class StructuredChangelog
 
       def filter_releases(releases)
         releases.select do |release| 
-          version <= release.version
+          Gem::Version.new(version) <= release.version
         end
       end
 

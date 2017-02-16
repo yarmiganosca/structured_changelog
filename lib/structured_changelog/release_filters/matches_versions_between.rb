@@ -10,7 +10,8 @@ class StructuredChangelog
 
       def filter_releases(releases)
         releases.select do |release|
-          floor <= release.version && release.version <= ceiling
+          Gem::Version.new(floor) <= release.version &&
+            release.version <= Gem::Version.new(ceiling)
         end
       end
 

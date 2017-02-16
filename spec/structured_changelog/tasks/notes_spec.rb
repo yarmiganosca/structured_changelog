@@ -10,12 +10,13 @@ RSpec.describe 'rake changelog:notes', type: :rake do
   let(:zero_one_zero) { "## RELEASE 0.1.0\n\n* FEATURE: thingy\n" }
   let(:zero_one_one)  { "## RELEASE 0.1.1\n\n* FIX: red\n" }
   let(:zero_two_zero) { "## RELEASE 0.2.0\n\n* FEATURE: blue\n" }
+  let(:zero_ten_zero) { "## RELEASE 0.10.0\n\n* FEATURE: sorting\n" }
 
   let(:printout) { releases.join("\n") }
 
   context "by default" do
     let(:options) { {path: path} }
-    let(:releases) { [zero_two_zero] }
+    let(:releases) { [zero_ten_zero] }
 
     it 'displays notes for the current version' do
       expect { task.execute(options) }.to output(printout).to_stdout
@@ -24,7 +25,7 @@ RSpec.describe 'rake changelog:notes', type: :rake do
   
   context "current release" do
     let(:query) { "current" }
-    let(:releases) { [zero_two_zero] }
+    let(:releases) { [zero_ten_zero] }
 
     it 'displays notes for the current version' do
       expect { task.execute(options) }.to output(printout).to_stdout
@@ -33,7 +34,7 @@ RSpec.describe 'rake changelog:notes', type: :rake do
 
   context "every release" do
     let(:query) { "all" }
-    let(:releases) { [zero_two_zero, zero_one_one, zero_one_zero] }
+    let(:releases) { [zero_ten_zero, zero_two_zero, zero_one_one, zero_one_zero] }
 
     it "displays the notes for all the releases" do
       expect { task.execute(options) }.to output(printout).to_stdout
@@ -51,7 +52,7 @@ RSpec.describe 'rake changelog:notes', type: :rake do
 
   context "releases after a version" do
     let(:query) { "0.1.1 <" }
-    let(:releases) { [zero_two_zero, zero_one_one] }
+    let(:releases) { [zero_ten_zero, zero_two_zero, zero_one_one] }
 
     it 'displays the notes for 0.1.0, 0.1.1, 0.2.0' do
       expect { task.execute(options) }.to output(printout).to_stdout

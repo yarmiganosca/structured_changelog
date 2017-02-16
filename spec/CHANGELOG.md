@@ -10,6 +10,10 @@
 
 * FIX: planned stuff
 
+## RELEASE 0.10.0
+
+* FEATURE: sorting
+
 ## RELEASE 0.2.0
 
 * FEATURE: blue

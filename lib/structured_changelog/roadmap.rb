@@ -26,10 +26,12 @@ class StructuredChangelog
       self.class.patterns.each do |pattern|
         match = contents.match(pattern)
 
-        return match[:version] if match && match.names.include?('version')
+        if match && match.names.include?('version')
+          return Gem::Version.new(match[:version])
+        end
       end
 
-      nil
+      Gem::Version.new(nil)
     end
 
     private
