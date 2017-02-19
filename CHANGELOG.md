@@ -14,7 +14,7 @@
 ## NEXT RELEASE
 
 * FEATURE: `rake changelog:sync` will update your gem's VERSION constant to your changelog's latest release version. This will let devs stop requiring `structured_changelog` to be installed before they can bundle their projects.
-* FEATURE: running the default `rake release` task will result in the Changelog being validated, the `VERSION` constant being updated, and both files being committed before anything else happens.
+* FEATURE: `rake changelog:release` will validate the Changelog, sync the Changelog release to `VERSION`, commit the version bump, then proceed with the default `rake release` task.
 
 ## RELEASE 0.7.2
 
