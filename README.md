@@ -1,20 +1,17 @@
 # StructuredChangelog
 
-You have a changelog in your repo, right? Great! Then what do you need with a `VERSION` constant?
+You have a changelog in your repo, right? Great! Then you'll never need to manually update your `VERSION` constant again!
 
-To parse your gem's current version from your changelog, put this in `lib/myproject/version.rb`:
-
-```ruby
-require 'structured_changelog'
-
-MyProject::VERSION = StructuredChangeog.new("path/to/CHANGELOG.md").version
-```
-
-You can also add this to your Rakefile:
+Add this to your Rakefile:
 
 ```ruby
 require 'structured_changelog/tasks'
 ```
+
+This will modify the default `rake release` task so that 2 things happen before it:
+
+1. your `CHANGELOG.md` is validated
+2. your gem's `VERSION` constant is set to the latest release version specified by your `CHANGELOG.md`
 
 You'll get these other wonderful rake tasks:
 
@@ -23,8 +20,12 @@ You'll get these other wonderful rake tasks:
 To validate your changelog:
 
     $ rake changelog:validate
+    
+To update your gem's `VERSION` constant to the latest release in your Changelog:
 
-To determine what version you're on:
+    $ rake changelog:sync
+
+To determine the version of the latest release *according to the Changelog*:
 
     $ rake changelog:version
 

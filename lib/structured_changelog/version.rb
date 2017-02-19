@@ -1,3 +1,3 @@
-require 'structured_changelog'
-
-StructuredChangelog::VERSION = StructuredChangelog.new("CHANGELOG.md").version
+class StructuredChangelog
+  VERSION = "0.7.2"
+end
