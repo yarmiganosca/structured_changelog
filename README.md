@@ -8,12 +8,16 @@ Add this to your Rakefile:
 require 'structured_changelog/tasks'
 ```
 
-This will modify the default `rake release` task so that 2 things happen before it:
+This will create a `rake changelog:release` task that:
 
-1. your `CHANGELOG.md` is validated
-2. your gem's `VERSION` constant is set to the latest release version specified by your `CHANGELOG.md`
+1. validates your `CHANGELOG.md`
+2. sets your gem's `VERSION` constant to the latest release version specified by your `CHANGELOG.md`
+3. commits that version bump
+4. runs `rake release`
 
-You'll get these other wonderful rake tasks:
+Turns out modifying `rake release` was _way_ more trouble than it was worth, so we had to make a separate task. Sorry folks.
+
+You'll also get these wonderful rake tasks:
 
 ## Wonderful Rake Tasks
 
@@ -24,6 +28,10 @@ To validate your changelog:
 To update your gem's `VERSION` constant to the latest release in your Changelog:
 
     $ rake changelog:sync
+
+To commit your version bump--and only your version bump:
+
+    $ rake changelog:commit
 
 To determine the version of the latest release *according to the Changelog*:
 
