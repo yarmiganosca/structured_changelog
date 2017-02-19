@@ -25,5 +25,5 @@ task 'changelog:commit', [:repo_path, :changelog_path, :version_path] do |_task,
   repo.add([changelog_path, version_path])
   repo.commit("Version bump to #{changelog.version}")
 
-  puts "Commited 'Version bumpd to #{changelog.version}'"
+  puts "Commited 'Version bumped to #{changelog.version}'"
 end
