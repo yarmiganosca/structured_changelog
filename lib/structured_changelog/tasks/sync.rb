@@ -10,4 +10,6 @@ task 'changelog:sync', [:changelog_path, :version_path] do |_task, arguments|
   version_file = Pathname.new(version_path)
 
   version_file.write(version_file.read.gsub(StructuredChangelog::VersionPattern, changelog.version.to_s))
+
+  puts "Updated gem version to #{changelog.version}"
 end
