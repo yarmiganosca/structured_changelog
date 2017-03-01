@@ -11,6 +11,10 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## NEXT RELEASE
+
+* FIX: `rake changelog:commit` wasn't allowing Gemfile.lock to change version.
+
 ## RELEASE 0.8.0
 
 * FEATURE: `rake changelog:sync` will update your gem's VERSION constant to your changelog's latest release version. This will let devs stop requiring `structured_changelog` to be installed before they can bundle their projects.

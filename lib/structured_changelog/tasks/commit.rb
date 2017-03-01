@@ -18,11 +18,15 @@ task 'changelog:commit', [:repo_path, :changelog_path, :version_path] do |_task,
     abort "Please commit all new files before bumping the version."
   end
 
-  if repo.status.changed.keys.sort != [changelog_path, version_path].sort
-    abort "Please commit all files that aren't #{changelog_path} or #{version_path} before bumping the version."
+  repo.add([changelog_path, version_path, 'Gemfile.lock'])
+
+  only_release_changes      = repo.status.changed.keys.sort == [changelog_path, version_path, 'Gemfile.lock'].sort
+  lock_only_changed_version = repo.diff('HEAD').deletions == 1 && repo.diff('HEAD').insertions == 1
+
+  unless only_release_changes && lock_only_changed_version
+    abort "Please commit all files that aren't #{acceptable_changes.join(' or ')} before bumping the version."
   end
 
-  repo.add([changelog_path, version_path])
   repo.commit("Version bump to #{changelog.version}")
 
   puts "Commited 'Version bumped to #{changelog.version}'"
