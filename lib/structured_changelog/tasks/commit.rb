@@ -21,7 +21,7 @@ task 'changelog:commit', [:repo_path, :changelog_path, :version_path] do |_task,
   diff = git.diff('HEAD').stats[:files]
 
   only_release_changes      = diff.keys.sort == [changelog_path, version_path, 'Gemfile.lock'].sort
-  lock_only_changed_version = diff['Gemfile.lock'].deletions == 1 && diff['Gemfile.lock'].insertions == 1
+  lock_only_changed_version = diff['Gemfile.lock'][:deletions] == 1 && diff['Gemfile.lock'][:insertions] == 1
 
   unless only_release_changes
     abort "Please commit all files that aren't #{acceptable_changes.join(' or ')} before bumping the version."
