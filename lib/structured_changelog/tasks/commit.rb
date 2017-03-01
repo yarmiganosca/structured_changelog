@@ -28,7 +28,7 @@ task 'changelog:commit', [:repo_path, :changelog_path, :version_path] do |_task,
   end
 
   acceptable_changes.each do |path|
-    git.add([path]) if diff[:files].key?(path)
+    git.add([path]) if diff.key?(path)
   end
 
   git.commit("Version bump to #{changelog.version}")
