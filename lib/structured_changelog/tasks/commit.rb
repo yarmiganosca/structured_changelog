@@ -27,17 +27,10 @@ task 'changelog:commit', [:repo_path, :changelog_path, :version_path] do |_task,
     abort "Please commit all files that aren't #{acceptable_changes.join(' or ')} before bumping the version."
   end
 
-  if diff.key?('Gemfile.lock')
-    lockfile_only_changed_version = diff['Gemfile.lock'][:deletions] == 1 && diff['Gemfile.lock'][:insertions] == 1
-
-    unless lockfile_only_changed_version
-      abort "Please commit all Gemfile.lock changes not related to this version bump."
-    end
-
-    git.add(['Gemfile.lock'])
+  acceptable_changes.each do |path|
+    git.add([path]) if diff[:files].key?(path)
   end
 
-  git.add([changelog_path, version_path])
   git.commit("Version bump to #{changelog.version}")
 
   puts "Commited 'Version bumped to #{changelog.version}'"
