@@ -2,6 +2,7 @@ desc "Validates your Changelog, updates your VERSION constant, commits that, the
 task 'changelog:release', [:repo_path, :changelog_path, :version_path] do |_task, arguments|
   Rake::Task['changelog:validate'].execute(arguments)
   Rake::Task['changelog:sync'].execute(arguments)
+  `bundle`
   Rake::Task['changelog:commit'].execute(arguments)
 
   # Merely requiring `bundler/gem_tasks` instantiates & caches a gemspec. At this point in this code,

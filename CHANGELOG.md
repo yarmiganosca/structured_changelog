@@ -11,6 +11,10 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## NEXT RELEASE
+
+* FIX: `Gemfile.lock` now gets updated with the new version before `changelog:commit` runs during `changelog:release`
+
 ## RELEASE 0.8.2
 
 * FIX: `rake changelog:commit` now doesn't care if more things change in your Gemfile.lock during release
