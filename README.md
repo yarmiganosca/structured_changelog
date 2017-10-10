@@ -33,6 +33,10 @@ To commit your version bump--and only your version bump:
 
     $ rake changelog:commit
 
+To do everything but release your code (so that it can go through a PR for CI, for instance):
+
+    $ rake changelog:prep
+
 To determine the version of the latest release *according to the Changelog*:
 
     $ rake changelog:version
