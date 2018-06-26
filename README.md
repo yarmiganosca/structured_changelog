@@ -8,44 +8,67 @@ Add this to your Rakefile:
 require 'structured_changelog/tasks'
 ```
 
-This will create a `rake changelog:release` task that:
+## With A Single Contributor
 
-1. validates your `CHANGELOG.md`
-2. sets your gem's `VERSION` constant to the latest release version specified by your `CHANGELOG.md`
-3. commits that version bump
-4. runs `rake release`
+If you have a single-contributor project, you can simply add release lines to `CHANGELOG.md`:
 
-Turns out modifying `rake release` was _way_ more trouble than it was worth, so we had to make a separate task. Sorry folks.
+```
+* FEATURE: we added a new thing
+* FIX: we fixed a broken thing
+```
 
-You'll also get these wonderful rake tasks:
+then when you want to cut a release, add a `"## RELEASE X.Y.Z"` section, making the above look like:
 
-## Wonderful Rake Tasks
+```
+## RELEASE X.Y.Z
 
-To validate your changelog:
+* FEATURE: we added a new thing
+* FIX: we fixed a broken thing
+```
 
-    $ rake changelog:validate
+and run
+
+    $ rake changelog:release
+
+This will:
+
+1. validate your `CHANGELOG.md`
+2. set your gem's `VERSION` constant to the latest release version specified by your `CHANGELOG.md`
+3. commit that version bump
+4. package your gem and push it to the specified gem server (rubygems.org by default)
+
+## With Multiple Contributors
+
+If you have multiple contributors, and you follow the single-contributor workflow, you'll end up with conflicts every time multiple people go to add a line to the changelog. We have a separate workflow for you.
+
+When you want to add changelog lines, instead of adding it directly to the changelog, write a git commit:
+
+```
+[CHANGELOG]
+
+* FEATURE: we added a new thing
+* FIX: we fixed a thing that was broken
+```
+
+The commit message needs to start with `[CHANGELOG]\n\n` and each line should start with `* BREAKING: `, `* FEATURE: `, `* FIX: `, `* ENHANCEMENT: `, or `* DEPRECATION: `.
+
+Then, when you're ready to cut a release, run:
+
+    $ rake changelog:compile
     
-To update your gem's `VERSION` constant to the latest release in your Changelog:
+This will pull all the `[CHANGELOG]` commit message bodies you've written since the last release from the commit log, and create a new release section in your changelog. It will have the minimum version possible given the change types (BREAKING is a major bump, FEATURE is a minor bump, and FIX, ENHANCEMENT, and DEPRECATION are all patch bumps). Once the rake task has written the new section to the changelog, it's often beneficial to give it a look and make sure it's free of typos and any other mistakes. Then, run
 
-    $ rake changelog:sync
+    $ rake changelog:release
 
-To commit your version bump--and only your version bump:
+as usual to actually release your gem.
 
-    $ rake changelog:commit
-
-To do everything but release your code (so that it can go through a PR for CI, for instance):
-
-    $ rake changelog:prep
-
-To determine the version of the latest release *according to the Changelog*:
-
-    $ rake changelog:version
+## Viewing Release Notes
 
 To view the release notes of the current release:
 
     $ rake changelog:notes
     $ rake changelog:notes[current]
-    
+
 To view the release notes of every release:
 
     $ rake changelog:notes[all]
@@ -73,6 +96,28 @@ To view the last 3 releases:
 To view the last N releases:
 
     $ rake changelog:recent[N]
+
+## Other Rake Tasks
+
+To determine the version of the latest release *according to the Changelog*:
+
+    $ rake changelog:version
+
+To validate your changelog:
+
+    $ rake changelog:validate
+    
+To update your gem's `VERSION` constant to the latest release in your Changelog:
+
+    $ rake changelog:sync
+
+To commit your version bump--and only your version bump:
+
+    $ rake changelog:commit
+
+To do everything but release your code (so that it can go through a PR for CI, for instance):
+
+    $ rake changelog:prep
 
 ## Installation
 
