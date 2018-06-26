@@ -1,19 +1,9 @@
-## ROADMAP 1.1.0
+## ROADMAP
 
 * investigate partial parsing of a file if parsing slows down *too much* on large changelogs
-
-## ROADMAP 1.0.0
-
-* consider moving from BREAKING/FEATURE/FIX to MAJOR/MINOR/PATCH
-* validate that each line starts with BREAKING:/FEATURE:/FIX:
-* validate that each release has the appropriate version
-* validate that release numbers increase monotonically
+* validate that each line starts with BREAKING/FEATURE/FIX/ENHANCEMENT/DEPRECATION
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
-
-## RELEASE 0.9.0
-
-* FEATURE: `changelog:prepe` task that performs `changelog:validate`, `changelog:sync`, and `changelog:commit`
 
 ## RELEASE 0.8.3
 
