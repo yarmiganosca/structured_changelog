@@ -7,16 +7,19 @@ task "changelog:compile", [:repo_path, :changelog_path] do |_task, arguments|
   repo_path      = arguments.to_h.fetch(:repo_path)      { Pathname.pwd }
   changelog_path = arguments.to_h.fetch(:changelog_path) { Pathname.pwd/"CHANGELOG.md" }
 
-  repo     = Git.open(repo_path)
-  last_tag = repo.tags.last.name
+  current_version = StructuredChangelog.new(changelog_path).version
 
-  message = repo.log.since(last_tag).map(&:message).select do |message|
+  repo = Git.open(repo_path)
+
+  commit_messages = repo.log.since("v#{current_version}").map(&:message).select do |message|
     message.match?(/^\[CHANGELOG\]\n\n\*\ /)
-  end.flat_map do |message|
+  end
+
+  abort("No [CHANGELOG] commits since the last release") if commit_messages.empty?
+
+  message = commit_messages.flat_map do |message|
     message.sub(/^\[CHANGELOG\]\n\n/, "")
   end.join("\n")
-
-  current_version = StructuredChangelog.new(changelog_path).version
 
   new_version = if message.match?(/^*\ BREAKING:/)
                   current_version.bump_major
