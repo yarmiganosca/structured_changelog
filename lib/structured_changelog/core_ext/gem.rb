@@ -15,10 +15,17 @@ class StructuredChangelog
     private
 
     def bump_at_segment_index(index)
-      bumped_segments = segments
-      bumped_segments[index] += 1
+      unbumped_segments = segments[0...index]
+      bumped_segment    = [segments[index] + 1]
+      # zero out the remaining segments until we hit a non-numeric (rc, say) segment
+      trailing_zeroes   = [0] * segments[(index + 1)..-1].take_while { |x| x.is_a?(Fixnum) }.size
 
-      self.class.new(bumped_segments.join("."))
+      bumped_segments =
+        unbumped_segments +
+        bumped_segment +
+        trailing_zeroes
+
+      self.class.new(bumped_segments.join('.'))
     end
   end
 end
