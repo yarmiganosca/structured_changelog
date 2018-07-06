@@ -11,7 +11,7 @@ task "changelog:compile", [:repo_path, :changelog_path] do |_task, arguments|
 
   repo = Git.open(repo_path)
 
-  commit_messages = repo.log.since("v#{current_version}").map(&:message).select do |message|
+  commit_messages = repo.log.between("v#{current_version}").map(&:message).select do |message|
     message.match?(/^\[CHANGELOG\]\n\n\*\ /)
   end
 
