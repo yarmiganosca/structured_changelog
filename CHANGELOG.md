@@ -5,6 +5,10 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## RELEASE 0.10.1
+
+* FIX: Fixed an issue that resulted in `changelog:compile` pulling in release lines from previous releases
+
 ## RELEASE 0.10.0
 
 * FEATURE: `changelog:compile` task that pulls all `[CHANGELOG]` commit messages since the last release, determines the minimum necessary release version, and appends a new section to the top of the releases in the changelog. See the README for more information.
