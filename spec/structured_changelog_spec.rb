@@ -13,7 +13,7 @@ RSpec.describe StructuredChangelog do
   describe "#roadmap" do
     it 'contains all the versions in the ROADMAP blocks' do
       versions = changelog.roadmaps.map(&:version).
-        select { |version| Gem::Version.new(nil) < version }.
+        select { |version| Gem::Version.new("") < version }.
         compact.sort
 
       expect(versions).to eq %w(100.0.0 100.0.1).map(&Gem::Version.method(:new))

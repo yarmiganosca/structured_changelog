@@ -31,7 +31,7 @@ class StructuredChangelog
         end
       end
 
-      Gem::Version.new(nil)
+      Gem::Version.new("")
     end
 
     private
