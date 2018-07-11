@@ -37,7 +37,7 @@ RSpec.describe 'rake changelog:compile', type: :rake do
       @repo.commit(fix_message, allow_empty: true)
       @repo.commit(feature_message, allow_empty: true)
 
-      # the task can abort (killing us) so we execute in another process
+      # the task can abort (killing this process) so we execute in another process
       Process.wait Process.fork { task.execute(options) }
       expect($?.exitstatus).to eq 0
     end
