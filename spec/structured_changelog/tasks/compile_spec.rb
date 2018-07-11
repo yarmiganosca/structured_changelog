@@ -37,7 +37,9 @@ RSpec.describe 'rake changelog:compile', type: :rake do
       @repo.commit(fix_message, allow_empty: true)
       @repo.commit(feature_message, allow_empty: true)
 
-      task.execute(options)
+      # the task can abort (killing us) so we execute in another process
+      Process.wait Process.fork { task.execute(options) }
+      expect($?.exitstatus).to eq 0
     end
 
     it 'adds a release section with all the changelog notes' do
@@ -47,10 +49,11 @@ RSpec.describe 'rake changelog:compile', type: :rake do
   end
 
   context "with no changelog commits since the last release" do
-    # we're testing an abort so we run the task in another process
-    before { Process.waitpid Process.fork { task.execute(options) } }
-
     it 'leaves CHANGELOG.md unchanged' do
+      # we're testing an abort so we run the task in another process
+      Process.waitpid Process.fork { task.execute(options) }
+
+      expect($?.exitstatus).to eq 1
       expect(changelog_path.read).to eq previous_section
     end
   end
