@@ -28,10 +28,10 @@ RSpec.describe 'rake changelog:compile', type: :rake do
 
   context "with changelog commits since the last release" do
     let(:fix_lines)   { "* FIX: we fixed something\n* FIX: we fixed something else" }
-    let(:fix_message) { "[CHANGELOG]\n\n#{fix_lines}" }
+    let(:fix_message) { "here is a description\n\n#{fix_lines}" }
 
     let(:feature_line)    { "* FEATURE: we added something" }
-    let(:feature_message) { "[CHANGELOG]\n\n#{feature_line}" }
+    let(:feature_message) { "here is a description\n\nand a line\n#{feature_line}\nand another line" }
 
     before do
       @repo.commit(fix_message, allow_empty: true)

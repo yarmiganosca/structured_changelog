@@ -41,22 +41,23 @@ This will:
 
 If you have multiple contributors, and you follow the single-contributor workflow, you'll end up with conflicts every time multiple people go to add a line to the changelog. We have a separate workflow for you.
 
-When you want to add changelog lines, instead of adding it directly to the changelog, write a git commit:
+When you want to add release notes, instead of adding them directly to the changelog, add them to any git commit:
 
 ```
-[CHANGELOG]
+Describe what I did this commit
 
-* FEATURE: we added a new thing
+More description goes here
+
 * FIX: we fixed a thing that was broken
 ```
 
-The commit message needs to start with `[CHANGELOG]\n\n` and each line should start with `* BREAKING: `, `* FEATURE: `, `* FIX: `, `* ENHANCEMENT: `, or `* DEPRECATION: `.
+Any line in a commit message that starts with `* BREAKING: `, `* FEATURE: `, `* FIX: `, `* ENHANCEMENT: `, or `* DEPRECATION: ` will be included in the release notes for the next version.
 
 Then, when you're ready to cut a release, run:
 
     $ rake changelog:compile
     
-This will pull all the `[CHANGELOG]` commit message bodies you've written since the last release from the commit log, and create a new release section in your changelog. It will have the minimum version possible given the change types (BREAKING is a major bump, FEATURE is a minor bump, and FIX, ENHANCEMENT, and DEPRECATION are all patch bumps). Once the rake task has written the new section to the changelog, it's often beneficial to give it a look and make sure it's free of typos and any other mistakes. Then, run
+This will pull all the release lines you've written in git commit messages since the last release from the commit log, and create a new release section in your changelog. It will have the minimum version possible given the change types (BREAKING is a major bump, FEATURE is a minor bump, and FIX, ENHANCEMENT, and DEPRECATION are all patch bumps). Once the rake task has written the new section to the changelog, it's often beneficial to give it a look and make sure it's free of typos and any other mistakes. Then, run
 
     $ rake changelog:release
 
@@ -64,7 +65,7 @@ as usual to actually release your gem.
 
 ## Viewing Release Notes
 
-To view the release notes of the current release:
+To view the release notes of the current release:`
 
     $ rake changelog:notes
     $ rake changelog:notes[current]

@@ -11,32 +11,31 @@ task "changelog:compile", [:repo_path, :changelog_path] do |_task, arguments|
 
   repo = Git.open(repo_path)
 
-  commit_messages = repo.log.between("v#{current_version}").map(&:message).select do |message|
-    message.match?(/^\[CHANGELOG\]\n\n\*\ /)
-  end
+  release_notes = repo.log.between("v#{current_version}").
+    map(&:message).
+    flat_map { |message| message.split("\n") }.
+    grep(/^\*\ (BREAKING|FEATURE|ENHANCEMENT|FIX|DEPRECATION)\:/).
+    map(&:strip).
+    join("\n")
 
-  abort("No [CHANGELOG] commits since the last release") if commit_messages.empty?
+  abort("No release notes since the last release") if release_notes.empty?
 
-  message = commit_messages.flat_map do |message|
-    message.sub(/^\[CHANGELOG\]\n\n/, "")
-  end.join("\n")
-
-  new_version = if message.match?(/^*\ BREAKING:/)
+  new_version = if release_notes.match?(/^*\ BREAKING:/)
                   current_version.bump_major
-                elsif message.match?(/^*\ FEATURE:/)
+                elsif release_notes.match?(/^*\ FEATURE:/)
                   current_version.bump_minor
-                elsif message.match?(/^*\ FIX:/)
+                elsif release_notes.match?(/^*\ FIX:/)
                   current_version.bump_patch
-                elsif message.match?(/^*\ ENHANCEMENT:/)
+                elsif release_notes.match?(/^*\ ENHANCEMENT:/)
                   current_version.bump_patch
-                elsif message.match?(/^*\ DEPRECATION:/)
+                elsif release_notes.match?(/^*\ DEPRECATION:/)
                   current_version.bump_patch
                 end
 
   changelog_path.write(
     changelog_path.read.sub(
       /^##\ RELEASE\ #{current_version}/,
-      "## RELEASE #{new_version}\n\n#{message}\n\n## RELEASE #{current_version}"
+      "## RELEASE #{new_version}\n\n#{release_notes}\n\n## RELEASE #{current_version}"
     )
   )
 end
