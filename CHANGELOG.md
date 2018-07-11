@@ -5,6 +5,10 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## RELEASE 0.10.2
+
+* ENHANCEMENT: release lines can now be embedded in any commit message body
+
 ## RELEASE 0.10.1
 
 * FIX: Fixed an issue that resulted in `changelog:compile` pulling in release lines from previous releases
