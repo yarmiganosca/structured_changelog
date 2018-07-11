@@ -65,7 +65,7 @@ as usual to actually release your gem.
 
 ## Viewing Release Notes
 
-To view the release notes of the current release:`
+To view the release notes of the current release:
 
     $ rake changelog:notes
     $ rake changelog:notes[current]
