@@ -3,6 +3,7 @@ require 'structured_changelog/core_ext/string'
 require 'structured_changelog/core_ext/gem'
 require 'git'
 
+desc "Pull all release lines from git commits since the last release and insert them into a release section in the CHANGELOG"
 task "changelog:compile", [:repo_path, :changelog_path] do |_task, arguments|
   repo_path      = arguments.to_h.fetch(:repo_path)      { Pathname.pwd }
   changelog_path = arguments.to_h.fetch(:changelog_path) { Pathname.pwd/"CHANGELOG.md" }
