@@ -5,6 +5,11 @@
 * require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
+## RELEASE 0.11.0
+
+* FEATURE: `changelog:preview` task will output a preview of the release section that `changelog:compile` would add to the changelog
+* ENHANCEMENT: the `changelog:compile` task now shows up in rake -T listings
+
 ## RELEASE 0.10.2
 
 * ENHANCEMENT: release lines can now be embedded in any commit message body
