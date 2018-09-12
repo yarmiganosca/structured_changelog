@@ -21,12 +21,17 @@ class StructuredChangelog
     attr_reader :changelog, :repo
 
     def release_notes
-      @release_notes ||= repo.log.between("v#{current_version}").
-        map(&:message).
-        flat_map { |message| message.split("\n") }.
-        grep(/^\*\ (BREAKING|FEATURE|ENHANCEMENT|FIX|DEPRECATION)\:/).
+      @release_notes ||= git_log_since_last_release.
+        split("\n").
         map(&:strip).
+        grep(/^\*\ (BREAKING|FEATURE|ENHANCEMENT|FIX|DEPRECATION)\:/).
         join("\n")
+    end
+
+    def git_log_since_last_release
+      repo.chdir do
+        `git log v#{current_version}..HEAD`.chomp
+      end
     end
 
     def current_version
