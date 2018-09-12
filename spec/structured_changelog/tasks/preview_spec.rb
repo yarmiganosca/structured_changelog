@@ -1,6 +1,6 @@
 require 'tmpdir'
 
-require 'structured_changelog/tasks/compile'
+require 'structured_changelog/tasks/preview'
 
 RSpec.describe 'rake changelog:preview', type: :rake do
   let(:task_name) { 'changelog:preview' }
