@@ -2,7 +2,6 @@
 
 * investigate partial parsing of a file if parsing slows down *too much* on large changelogs
 * validate that each line starts with BREAKING/FEATURE/FIX/ENHANCEMENT/DEPRECATION
-* require release block lines to be ordered in descending severity
 * disable strict semver version validation before 1.0.0
 
 ## RELEASE 0.11.1
