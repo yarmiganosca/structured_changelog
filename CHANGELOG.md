@@ -3,6 +3,7 @@
 * investigate partial parsing of a file if parsing slows down *too much* on large changelogs
 * validate that each line starts with BREAKING/FEATURE/FIX/ENHANCEMENT/DEPRECATION
 * disable strict semver version validation before 1.0.0
+* `rake changelog:todos` to show todos that, based on the current commit history release lines, need to be fixed before the next release.
 
 ## RELEASE 0.11.1
 
