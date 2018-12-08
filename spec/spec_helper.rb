@@ -1,7 +1,8 @@
 require 'rspec_config'
 require 'fantaskspec'
-require 'simplecov'
-SimpleCov.start
+
+require 'coveralls'
+Coveralls.wear!
 
 require 'structured_changelog'
 
