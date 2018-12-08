@@ -1,0 +1,279 @@
+= StructuredChangelog
+:ext-relative: .adoc
+:source-highlighter: coderay
+:sectanchors:
+:linkattrs:
+:icons: font
+:toc: macro
+:toc-title:
+:toclevels: 3
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+image:https://badge.fury.io/rb/structured_changelog.svg["Gem Version", link="https://badge.fury.io/rb/structured_changelog"]
+image:https://travis-ci.org/yarmiganosca/structured_changelog.svg?branch=master["Build Status", link="https://travis-ci.org/yarmiganosca/structured_changelog"]
+image:https://coveralls.io/repos/github/yarmiganosca/structured_changelog/badge.svg?branch=master["Test Coverage", link="https://coveralls.io/github/yarmiganosca/structured_changelog?branch=master"]
+
+toc::[]
+
+You have a changelog in your repo, right? Great! Then you'll never need to manually update your `VERSION` constant again!
+
+<<Installation,Install the gem>> and add this line to your Rakefile:
+
+[source,ruby]
+----
+require 'structured_changelog/tasks'
+----
+
+== With A Single Contributor
+
+If you have a single-contributor project, you can simply add release lines to `CHANGELOG.md`:
+
+----
+* FEATURE: we added a new thing
+* FIX: we fixed a broken thing
+----
+
+then when you want to cut a release, add a `"## RELEASE X.Y.Z"` section, making the above look like:
+
+----
+== RELEASE X.Y.Z
+
+* FEATURE: we added a new thing
+* FIX: we fixed a broken thing
+----
+
+and run
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:release
+----
+
+This will:
+
+1. validate your `CHANGELOG.md`
+2. set your gem's `VERSION` constant to the latest release version specified by your `CHANGELOG.md`
+3. commit that version bump
+4. package your gem and push it to the specified gem server (rubygems.org by default)
+
+== With Multiple Contributors
+
+If you have multiple contributors, and you follow the single-contributor workflow, you'll end up with conflicts every time multiple people go to add a line to the changelog. We have a separate workflow for you.
+
+When you want to add release notes, instead of adding them directly to the changelog, add them to any git commit:
+
+----
+Describe what I did this commit
+
+More description goes here
+
+* FIX: we fixed a thing that was broken
+----
+
+Any line in a commit message that starts with ```* BREAKING: ```, ```* FEATURE: ```, ```* FIX: ```, ```* ENHANCEMENT: ```, or ```* DEPRECATION: ``` will be included in the release notes for the next version.
+
+Then, when you're ready to cut a release, run:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:compile
+----
+
+This will pull all the release lines you've written in git commit messages since the last release from the commit log, and create a new release section in your changelog. It will have the minimum version possible given the change types (BREAKING is a major bump, FEATURE is a minor bump, and FIX, ENHANCEMENT, and DEPRECATION are all patch bumps). Once the rake task has written the new section to the changelog, it's often beneficial to give it a look and make sure it's free of typos and any other mistakes. Then, run
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:release
+----
+
+as usual to actually release your gem.
+
+== Viewing Release Notes
+
+To view the release notes of the current release:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:notes
+----
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:notes[current]
+----
+
+To view the release notes of every release:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:notes[all]
+----
+
+for a specific release:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:notes[1.0.4]
+----
+
+for all releases inclusively after a given release:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:notes[1.0.4 <]
+----
+
+for all releases inclusively before a given release:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:notes[< 2.0.4]
+----
+
+for all releases inclusively between two releases:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:notes[1.0.4 < 2.0.4]
+----
+
+To view the last 3 releases:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:recent
+----
+
+To view the last N releases:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:recent[N]
+----
+
+== Other Rake Tasks
+
+To determine the version of the latest release *according to the Changelog*:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:version
+----
+
+To validate your changelog:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:validate
+----
+    
+To update your gem's `VERSION` constant to the latest release in your Changelog:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:sync
+----
+
+To commit your version bump--and only your version bump:
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:commit
+----
+
+To do everything but release your code (so that it can go through a PR for CI, for instance):
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:prep
+----
+
+== Installation
+
+Add this line to your application's Gemfile:
+
+[source,ruby]
+----
+gem 'structured_changelog'
+----
+
+And then execute
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++bundle install
+----
+
+Or, install it yourself with
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++gem install structured_changelog
+----
+
+== Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/yarmiganosca/structured_changelog.
+
+[IMPORTANT]
+.Code of Conduct
+====
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the http://contributor-covenant.org[Contributor Covenant] code of conduct.
+====
+
+=== Development
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`.
+
+=== Testing
+
+To run all the tests, run
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++bundle exec rspec
+----
+
+=== Pull Requests
+
+Pull requests should be well-scoped and include tests appropriate to the changes.
+
+When submitting a pull request that changes user-facing behavior, add release note lines to the commit message body http://github.com/yarmiganosca/structured_changelog#with-multiple-contributors[like this]. You can preview your release lines by running
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++bundle exec rake changelog:preview
+----
+
+=== Releases
+
+Releasing a new version is a 2-step process.
+
+First, run
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++bundle exec rake changelog:compile
+----
+
+This will add a new release section before the other release sections. It will contain all the release notes in the commit messages since the last release, and will be prepopulated with the minimum possible version given those changes. Proof-read it and reorder the notes if you think doing so would be necessary or clearer. Feel free to increase the version if necessary (to force a major release, for example).
+
+Once you're satisfied, run
+
+[subs=+macros]
+----
++++<span style="pointer-events:none;user-select:none;">$ </span>+++bundle exec rake changelog:release
+----
+
+This will create a git tag for the version, push git commits and tags, and push the `.gem` file to https://rubygems.org[rubygems.org].
+
+== License
+
+The gem is available as open source under the terms of the https://opensource.org/licenses/MIT[MIT License].
