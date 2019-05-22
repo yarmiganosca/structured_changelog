@@ -64,7 +64,9 @@ This will:
 
 == With Multiple Contributors
 
-If you have multiple contributors, and you follow the single-contributor workflow, you'll end up with conflicts every time multiple people go to add a line to the changelog. We have a separate workflow for you.
+If you have multiple contributors, and you follow the single-contributor workflow, you'll end up with git merge conflicts every time different contributes add lines to the changelog in different Pull Requests. Fortunately, there's a separate workflow for projects with multiple contributors.
+
+NOTE: Even though it was expliticitly designed for projects with multiple contributors, this workflow works just as well for projects with a single author--in fact I use it for structured_changelog.
 
 When you want to add release notes, instead of adding them directly to the changelog, add them to any git commit:
 
