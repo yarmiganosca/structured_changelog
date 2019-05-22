@@ -21,7 +21,7 @@ image:https://coveralls.io/repos/github/yarmiganosca/structured_changelog/badge.
 
 toc::[]
 
-You have a changelog in your repo, right? Great! Then you'll never need to manually update your `VERSION` constant again!
+You have a changelog in your gem's repo, right? Great! Then you'll never need to manually update your `VERSION` constant again!
 
 <<Installation,Install the gem>> and add this line to your Rakefile:
 
