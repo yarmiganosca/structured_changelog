@@ -5,6 +5,10 @@
 * disable strict semver version validation before 1.0.0
 * `rake changelog:todos` to show todos that, based on the current commit history release lines, need to be fixed before the next release.
 
+## RELEASE 0.11.2
+
+* ENHANCEMENT: Now if you use `BREAKING: we broke a thing` instead of `* BREAKING: we broke a thing` in a git commit message release line, the `rake changelog:preview` and `rake changelog:compile` tasks will still retrieve those commit lines
+
 ## RELEASE 0.11.1
 
 * FIX: changelog:preview and changelog:compile tasks now render more than just the first release line in the commit log
