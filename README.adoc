@@ -42,7 +42,7 @@ If you have a single-contributor project, you can simply add release lines to `C
 then when you want to cut a release, add a `"## RELEASE X.Y.Z"` section, making the above look like:
 
 ----
-== RELEASE X.Y.Z
+## RELEASE X.Y.Z
 
 * FEATURE: we added a new thing
 * FIX: we fixed a broken thing
