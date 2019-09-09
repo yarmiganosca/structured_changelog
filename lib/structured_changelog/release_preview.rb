@@ -21,11 +21,16 @@ class StructuredChangelog
     attr_reader :changelog, :repo
 
     def release_notes
-      @release_notes ||= git_log_since_last_release.
-        split("\n").
-        map(&:strip).
-        grep(/^\*\ (BREAKING|FEATURE|ENHANCEMENT|FIX|DEPRECATION)\:/).
-        join("\n")
+      @release_notes ||= git_log_since_last_release
+        .split("\n")
+        .map(&:strip)
+        .grep(/#{optional_prefix_pattern}(BREAKING|FEATURE|FIX|ENHANCEMENT|DEPRECATION):\ /)
+        .map { |release_line| release_line.sub(optional_prefix_pattern, "* ") }
+        .join("\n")
+    end
+
+    def optional_prefix_pattern
+      /^(\*\ )?/
     end
 
     def git_log_since_last_release
@@ -39,15 +44,15 @@ class StructuredChangelog
     end
 
     def new_version
-      @new_version ||= if release_notes.match?(/^*\ BREAKING:/)
+      @new_version ||= if release_notes.match?(/#{optional_prefix_pattern}BREAKING:\ /)
                          current_version.bump_major
-                       elsif release_notes.match?(/^*\ FEATURE:/)
+                       elsif release_notes.match?(/#{optional_prefix_pattern}FEATURE:\ /)
                          current_version.bump_minor
-                       elsif release_notes.match?(/^*\ FIX:/)
+                       elsif release_notes.match?(/#{optional_prefix_pattern}FIX:\ /)
                          current_version.bump_patch
-                       elsif release_notes.match?(/^*\ ENHANCEMENT:/)
+                       elsif release_notes.match?(/#{optional_prefix_pattern}ENHANCEMENT:\ /)
                          current_version.bump_patch
-                       elsif release_notes.match?(/^*\ DEPRECATION:/)
+                       elsif release_notes.match?(/#{optional_prefix_pattern}DEPRECATION:\ /)
                          current_version.bump_patch
                        end
     end

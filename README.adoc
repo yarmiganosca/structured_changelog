@@ -78,7 +78,15 @@ More description goes here
 * FIX: we fixed a thing that was broken
 ----
 
-Any line in a commit message that starts with ```* BREAKING: ```, ```* FEATURE: ```, ```* FIX: ```, ```* ENHANCEMENT: ```, or ```* DEPRECATION: ``` will be included in the release notes for the next version.
+Any line in a commit message that starts with any of the following will be included in the release notes for the next version:
+
+* ``* BREAKING: `` or ```BREAKING: ```
+* ```* FEATURE: ``` or ```FEATURE: ```
+* ```* ENHANCEMENT: ``` or ```ENHANCEMENT: ```
+* ```* FIX: ``` or ```FIX: ```
+* ```* DEPRECATION: ``` or ```DEPRECATION: ```
+
+(We accept either with or without the asterisks so that forgetting one isn't actually a problem).
 
 Then, when you're ready to cut a release, run:
 
@@ -87,7 +95,9 @@ Then, when you're ready to cut a release, run:
 +++<span style="pointer-events:none;user-select:none;">$ </span>+++rake changelog:compile
 ----
 
-This will pull all the release lines you've written in git commit messages since the last release from the commit log, and create a new release section in your changelog. It will have the minimum version possible given the change types (BREAKING is a major bump, FEATURE is a minor bump, and FIX, ENHANCEMENT, and DEPRECATION are all patch bumps). Once the rake task has written the new section to the changelog, it's often beneficial to give it a look and make sure it's free of typos and any other mistakes. Then, run
+This will pull all the release lines you've written in git commit messages since the last release from the commit log, and create a new release section in your changelog. It will have the minimum version possible given the change types (BREAKING is a major bump, FEATURE is a minor bump, and FIX, ENHANCEMENT, and DEPRECATION are all patch bumps).
+
+Once the rake task has written the new section to the changelog, it's often beneficial to give it a look and make sure it's free of typos and any other mistakes. Then, run
 
 [subs=+macros]
 ----

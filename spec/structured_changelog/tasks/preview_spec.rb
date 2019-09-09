@@ -32,7 +32,7 @@ RSpec.describe 'rake changelog:preview', type: :rake do
     let(:fix_lines)   { "* FIX: we fixed something\n* FIX: we fixed something else" }
     let(:fix_message) { "here is a description\n\n#{fix_lines}" }
 
-    let(:feature_line)    { "* FEATURE: we added something" }
+    let(:feature_line)    { "FEATURE: we added something" }
     let(:feature_message) { "here is a description\n\nand a line\n#{feature_line}\nand another line" }
 
     before do
@@ -41,7 +41,7 @@ RSpec.describe 'rake changelog:preview', type: :rake do
     end
 
     it 'displays a release section with all the changelog notes' do
-      expect(preview).to eq ["## RELEASE 1.1.0\n", feature_line, fix_lines].join("\n")
+      expect(preview).to eq ["## RELEASE 1.1.0\n", "* #{feature_line}", fix_lines].join("\n")
     end
   end
 
