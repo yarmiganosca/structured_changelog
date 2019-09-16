@@ -1,5 +1,5 @@
+require 'structured_changelog/core_ext/gem/version'
 require 'structured_changelog/core_ext/string'
-require 'structured_changelog/core_ext/gem'
 
 class StructuredChangelog
   class ReleasePreview
